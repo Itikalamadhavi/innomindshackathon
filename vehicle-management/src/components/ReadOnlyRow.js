@@ -1,6 +1,6 @@
 import React from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
-const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
+const ReadOnlyRow = ({ contact, handleDeleteClick}) => {
   return (
     <tr>
       <td>{contact.name}</td>

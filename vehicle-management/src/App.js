@@ -1,20 +1,15 @@
 import React, { useState ,useEffect } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
-import { DataGrid } from '@mui/x-data-grid';
-//import data from "./mock-data.json";
 import ReadOnlyRow from "./components/ReadOnlyRow";
-//import EditableRow from "./components/EditableRow";
 import Buttons from "./components/Button/Button.js";
 import Header from "./components/Header/Header.js";
 import Stack from '@mui/material/Stack';
       
 
 const App = () => {
-  const [contacts, setContacts] = useState();
-  // const [data, setData] = useState();
-  // const [vehicle, setvehicle]= useState(setdata);
   const [addFormData, setAddFormData] = useState({
+    id:"",
     name: "",
     manufacturer: "",
     model: "",
@@ -25,13 +20,6 @@ const App = () => {
     city:"",
     country:"",
   });
-  // async function fetchData() {
-  //   const res = await fetch("https://63037d409eb72a839d824580.mockapi.io/Vehicle");
-  //   res
-  //     .json()
-  //     .then(res => setContacts(res))
-  //     .catch(err => setErrors(err));
-  // }
   
 const [info, setInfo] = useState([]);
   useEffect(() => {
@@ -68,15 +56,15 @@ const [info, setInfo] = useState([]);
       country:addFormData.country,
     };
 
-    const newContacts = [...contacts, newContact];
-    setContacts(newContacts);
+    const newContacts = [...info, newContact];
+    setInfo(newContacts);
   };
 
   const handleDeleteClick = (contactId) => {
-    const newContacts = [...contacts];
-    const index = contacts.findIndex((contact) => contact.id === contactId);
+    const newContacts = [...info];
+    const index = info.findIndex((contact) => contact.id === contactId);
     newContacts.splice(index, 1);
-    setContacts(newContacts);
+    setInfo(newContacts);
   };
 
   return (
@@ -103,7 +91,7 @@ const [info, setInfo] = useState([]);
           </thead>
           <tbody>
 
-            {contacts.map((contact) => (
+            {info.map((contact) => (
                   <ReadOnlyRow
                     contact={contact}
                     handleDeleteClick={handleDeleteClick}
@@ -113,12 +101,6 @@ const [info, setInfo] = useState([]);
         </table>
       </form>
       <h2>Add a Contact</h2>
-      <DataGrid
-        rows={info}
-       
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-      />
      
       <form onSubmit={handleAddFormSubmit}>
         
