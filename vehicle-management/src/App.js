@@ -5,7 +5,7 @@ import ReadOnlyRow from "./components/ReadOnlyRow";
 import Buttons from "./components/Button/Button.js";
 import Header from "./components/Header/Header.js";
 import Stack from '@mui/material/Stack';
-      
+import PieChart from './components/PieChart/PieChart.js';      
 
 const App = () => {
   const [addFormData, setAddFormData] = useState({
@@ -26,7 +26,7 @@ const [info, setInfo] = useState([]);
     fetch("https://63037d409eb72a839d824580.mockapi.io/Vehicle")
       .then((response) => response.json())
       .then((json) => setInfo(json));
-  });
+  },[]);
 
   const handleAddFormChange = (event) => {
     event.preventDefault();
@@ -59,7 +59,6 @@ const [info, setInfo] = useState([]);
     const newContacts = [...info, newContact];
     setInfo(newContacts);
   };
-
   const handleDeleteClick = (contactId) => {
     const newContacts = [...info];
     const index = info.findIndex((contact) => contact.id === contactId);
@@ -100,6 +99,7 @@ const [info, setInfo] = useState([]);
           </tbody>
         </table>
       </form>
+      <PieChart/>
       <h2>Add a Contact</h2>
      
       <form onSubmit={handleAddFormSubmit}>
@@ -171,6 +171,7 @@ const [info, setInfo] = useState([]);
         />
         <button type="submit">Add</button>
       </form>
+
     </div>
    
   );
